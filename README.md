@@ -1,4 +1,4 @@
-# SOCCER API DOCUMENTATION 
+# GAME CURRENCY API DOCUMENTATION 
 
 This repository contains source code for Soccer API.
 
@@ -25,7 +25,7 @@ To run the project localy, make sure minimum requirements are fulfilled.
     > git clone https://github.com/usernamesalah/game-currency.git
 
     // change directory to root project folder
-    > cd soccer
+    > cd game-currency
     
     // install all the dependencies
     > make init   
@@ -40,7 +40,7 @@ To run the project localy, make sure minimum requirements are fulfilled.
     > source .env.development
     
     // run project
-    > ./bin/soccer
+    > ./bin/game-currency
 
     // now go to http://localhost:8080/ in your browser to check the app.
     ```
