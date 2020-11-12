@@ -92,7 +92,9 @@ func (api *API) createConversion(c echo.Context) error {
 // @Tags conversion
 // @ID convert-conversion
 // @Produce json
-// @Param player body models.Converted true "Create currency"
+// @Param from query integer true "conversion id from" default(1)
+// @Param to query integer true "conversion id to" default(1)
+// @Param amount query integer true "amount" default(1)
 // @Success 201 {object} interface{}
 // @Router /convert [post]
 func (api *API) convert(c echo.Context) error {

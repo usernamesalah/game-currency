@@ -1,4 +1,4 @@
-module github.com/usernamesalah/game-currency/pkg/models
+module github.com/usernamesalah/game-currency
 
 go 1.13
 

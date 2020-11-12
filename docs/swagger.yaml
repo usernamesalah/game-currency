@@ -1,44 +1,88 @@
 basePath: /api/v1
 definitions:
-  models.Event:
+  models.Conversion:
     properties:
-      created_at:
-        example: "2020-04-21T00:00:00Z"
-        type: string
-      id:
+      conversion_from:
         type: integer
-      image_url:
-        type: string
-      registration_url:
-        type: string
-      scheduled_end:
-        example: "2020-04-21T00:00:00Z"
-        type: string
-      scheduled_start:
-        example: "2020-04-21T00:00:00Z"
-        type: string
-      title:
-        type: string
-      updated_at:
-        example: "2020-04-21T00:00:00Z"
+      conversion_to:
+        type: integer
+      rate:
+        type: integer
+    type: object
+  models.Currency:
+    properties:
+      name:
         type: string
     type: object
 info:
   contact:
-    email: support@palembangdigital.org
-    name: Palembang Digital
-    url: https://palembangdigital.org
-  description: API documentation for palembangdigital.org
+    email: reziapriliansyah@gmail.com
+    name: Rezi Apriliansyah
+  description: API documentation for Game Currency
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  title: Palembang Digital API
+  title: Game Currency
   version: 1.0.0
 paths:
-  /events:
+  /conversion:
+    post:
+      description: Create a new conversion
+      operationId: create-conversion
+      parameters:
+      - description: Create conversion
+        in: body
+        name: player
+        required: true
+        schema:
+          $ref: '#/definitions/models.Conversion'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Conversion'
+      summary: Create a new conversion
+      tags:
+      - conversion
+  /convert:
+    post:
+      description: Create convert rate
+      operationId: convert-conversion
+      parameters:
+      - default: 1
+        description: conversion id from
+        in: query
+        name: from
+        required: true
+        type: integer
+      - default: 1
+        description: conversion id to
+        in: query
+        name: to
+        required: true
+        type: integer
+      - default: 1
+        description: amount
+        in: query
+        name: amount
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            type: object
+      summary: Create convert rate
+      tags:
+      - conversion
+  /currency:
     get:
-      description: Get the list of events
-      operationId: list-events
+      description: Get the list of currency
+      operationId: list-currency
       produces:
       - application/json
       responses:
@@ -46,87 +90,29 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/models.Event'
+              $ref: '#/definitions/models.Currency'
             type: array
-      summary: List events
+      summary: List currency
       tags:
-      - events
+      - currency
     post:
-      description: Create a new event
-      operationId: create-event
+      description: Create a new currency
+      operationId: create-currency
       parameters:
-      - description: Create event
+      - description: Create currency
         in: body
-        name: event
+        name: player
         required: true
         schema:
-          $ref: '#/definitions/models.Event'
+          $ref: '#/definitions/models.Currency'
       produces:
       - application/json
       responses:
         "201":
           description: Created
           schema:
-            $ref: '#/definitions/models.Event'
-      summary: Create a new event
+            $ref: '#/definitions/models.Currency'
+      summary: Create a new currency
       tags:
-      - events
-  /events/{id}:
-    delete:
-      description: Delete an event by id
-      operationId: delete-event
-      parameters:
-      - description: Event ID
-        in: path
-        name: id
-        required: true
-        type: integer
-      produces:
-      - text/plain
-      responses:
-        "204":
-          description: No Content
-          schema:
-            type: string
-      summary: Delete an event
-      tags:
-      - events
-    get:
-      description: Get an event by id
-      operationId: get-event
-      parameters:
-      - description: Event ID
-        in: path
-        name: id
-        required: true
-        type: integer
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/models.Event'
-      summary: Get an event
-      tags:
-      - events
-    put:
-      description: Update an event
-      operationId: update-event
-      parameters:
-      - description: Event ID
-        in: path
-        name: id
-        required: true
-        type: integer
-      produces:
-      - text/plain
-      responses:
-        "201":
-          description: Created
-          schema:
-            type: string
-      summary: Update an event
-      tags:
-      - events
+      - currency
 swagger: "2.0"

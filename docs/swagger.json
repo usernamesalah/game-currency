@@ -1,12 +1,11 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "API documentation for palembangdigital.org",
-        "title": "Palembang Digital API",
+        "description": "API documentation for Game Currency",
+        "title": "Game Currency",
         "contact": {
-            "name": "Palembang Digital",
-            "url": "https://palembangdigital.org",
-            "email": "support@palembangdigital.org"
+            "name": "Rezi Apriliansyah",
+            "email": "reziapriliansyah@gmail.com"
         },
         "license": {
             "name": "Apache 2.0",
@@ -16,47 +15,126 @@
     },
     "basePath": "/api/v1",
     "paths": {
-        "/events": {
-            "get": {
-                "description": "Get the list of events",
+        "/conversion": {
+            "post": {
+                "description": "Create a new conversion",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
-                    "events"
+                    "conversion"
                 ],
-                "summary": "List events",
-                "operationId": "list-events",
+                "summary": "Create a new conversion",
+                "operationId": "create-conversion",
+                "parameters": [
+                    {
+                        "description": "Create conversion",
+                        "name": "player",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Conversion"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/models.Conversion"
+                        }
+                    }
+                }
+            }
+        },
+        "/convert": {
+            "post": {
+                "description": "Create convert rate",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "conversion"
+                ],
+                "summary": "Create convert rate",
+                "operationId": "convert-conversion",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "default": 1,
+                        "description": "conversion id from",
+                        "name": "from",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "default": 1,
+                        "description": "conversion id to",
+                        "name": "to",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "default": 1,
+                        "description": "amount",
+                        "name": "amount",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/currency": {
+            "get": {
+                "description": "Get the list of currency",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "currency"
+                ],
+                "summary": "List currency",
+                "operationId": "list-currency",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/models.Event"
+                                "$ref": "#/definitions/models.Currency"
                             }
                         }
                     }
                 }
             },
             "post": {
-                "description": "Create a new event",
+                "description": "Create a new currency",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
-                    "events"
+                    "currency"
                 ],
-                "summary": "Create a new event",
-                "operationId": "create-event",
+                "summary": "Create a new currency",
+                "operationId": "create-currency",
                 "parameters": [
                     {
-                        "description": "Create event",
-                        "name": "event",
+                        "description": "Create currency",
+                        "name": "player",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.Event"
+                            "$ref": "#/definitions/models.Currency"
                         }
                     }
                 ],
@@ -64,93 +142,7 @@
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/models.Event"
-                        }
-                    }
-                }
-            }
-        },
-        "/events/{id}": {
-            "get": {
-                "description": "Get an event by id",
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "events"
-                ],
-                "summary": "Get an event",
-                "operationId": "get-event",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "Event ID",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/models.Event"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "description": "Update an event",
-                "produces": [
-                    "text/plain"
-                ],
-                "tags": [
-                    "events"
-                ],
-                "summary": "Update an event",
-                "operationId": "update-event",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "Event ID",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "Created",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "description": "Delete an event by id",
-                "produces": [
-                    "text/plain"
-                ],
-                "tags": [
-                    "events"
-                ],
-                "summary": "Delete an event",
-                "operationId": "delete-event",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "Event ID",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "204": {
-                        "description": "No Content",
-                        "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.Currency"
                         }
                     }
                 }
@@ -158,36 +150,25 @@
         }
     },
     "definitions": {
-        "models.Event": {
+        "models.Conversion": {
             "type": "object",
             "properties": {
-                "created_at": {
-                    "type": "string",
-                    "example": "2020-04-21T00:00:00Z"
-                },
-                "id": {
+                "conversion_from": {
                     "type": "integer"
                 },
-                "image_url": {
+                "conversion_to": {
+                    "type": "integer"
+                },
+                "rate": {
+                    "type": "integer"
+                }
+            }
+        },
+        "models.Currency": {
+            "type": "object",
+            "properties": {
+                "name": {
                     "type": "string"
-                },
-                "registration_url": {
-                    "type": "string"
-                },
-                "scheduled_end": {
-                    "type": "string",
-                    "example": "2020-04-21T00:00:00Z"
-                },
-                "scheduled_start": {
-                    "type": "string",
-                    "example": "2020-04-21T00:00:00Z"
-                },
-                "title": {
-                    "type": "string"
-                },
-                "updated_at": {
-                    "type": "string",
-                    "example": "2020-04-21T00:00:00Z"
                 }
             }
         }

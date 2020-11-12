@@ -31,7 +31,7 @@ func NewAPI(currencyService services.CurrencyService,
 
 // Register the API's endpoints in the given router.
 func (api *API) Register(g *echo.Group) {
-	Currency API
+	//Currency API
 	g.GET("/currency", api.listCurrency)
 	g.GET("/convert", api.convert)
 
