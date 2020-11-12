@@ -1,0 +1,19 @@
+version: "3"
+services:
+  # game-currency:
+  #   build: .
+  #   ports:
+  #     - "8080:8080"
+  #   environment:
+  #     - PORT=8080
+  #     - DATABASE_URL=postgres://user:user@postgresql:5432/game-currency?sslmode=disable
+  #   links:
+  #     - postgresql
+  postgresql:
+    image: bitnami/postgresql:12
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRESQL_DATABASE=game-currency
+      - POSTGRESQL_USERNAME=user
+      - POSTGRESQL_PASSWORD=user

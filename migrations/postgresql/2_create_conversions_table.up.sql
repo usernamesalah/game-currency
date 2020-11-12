@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS conversions (
+    id SERIAL PRIMARY KEY,
+    conversion_from INT NOT NULL,
+    conversion_to INT NOT NULL,
+    rate INT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
