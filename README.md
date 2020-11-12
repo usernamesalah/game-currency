@@ -7,7 +7,7 @@ This repository contains source code for Soccer API.
 To run the project localy, make sure minimum requirements are fulfilled.
 
 - Go version 1.10 or higher
-- PostgreSQL version 12
+- PostgreSQL version 12 or Latest
 - Docker (optional) -- see [here](https://docs.docker.com/get-docker/).
 
 
@@ -69,14 +69,13 @@ To configure your API documentation, please refer to [swag's declarative comment
 
 To access the documentation, please visit [API DOCUMENTATION](http://localhost:8080/docs/api/v1/index.html).
 
-
 ## Repository Content
 
 - [/api/v1](https://github.com/usernamesalah/game-currency/tree/master/api/v1) contains controllers and API route registry
 - [/pkg](https://github.com/usernamesalah/game-currency/tree/master/pkg)
   - [/pkg/models](https://github.com/usernamesalah/game-currency/tree/master/pkg/models) contains table models
   - [/pkg/services](https://github.com/usernamesalah/game-currency/tree/master/pkg/services) contains database transactions
- 
+- [/migraions/postgresql](https://github.com/usernamesalah/game-currency/tree/master/migraions/postgresql) contains database migrations for this project
 
 ## Tools Used
 
